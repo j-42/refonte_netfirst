@@ -1,0 +1,106 @@
+.footer{
+	background: $black;
+	display: flex;
+	padding: 30px 15px 40px;
+	position: relative;
+	z-index: 99;
+	@include media("<tablet") {
+		flex-wrap: wrap;
+	}
+	@include media(">=tablet") {
+		padding: 70px 15px 40px;
+	}
+	@include media(">=desktop") {
+		padding: 70px 127px 40px;
+	}
+	.logo-holder{
+		width: 100%;
+		margin-bottom: 20px;
+		@include media(">=tablet") {
+			max-width: 25%;
+			margin-bottom: 0px;
+		}
+	}
+	.logo{
+		display: inline-block;
+	}
+	ul{
+		@extend %listreset;
+		color: $white;
+	}
+	.icon-list{
+		display: flex;
+		padding-top: 33px;
+		li{
+			margin-right: 15px;
+			&:last-child{
+				margin-right: 0px;
+			}
+		}
+		a{
+			color: $white;
+			border: 1px solid $white;
+			padding: 8px;
+			border-radius: 50%;
+			text-decoration: none;
+			@include animate(color border);
+			&:hover{
+				color: $yellow;
+				border: 1px solid $yellow;
+			}
+		}
+	}
+	.contact-list{
+		position: relative;
+		padding-top: 25px;
+		width: 100%;
+		&:after{
+			content: " ";
+			max-width: 26px;
+			width: 100%;
+			min-height: 8px;
+			background: $yellow;
+			position: absolute;
+			top: 0px;
+		}
+		@include media(">=phone") {
+			max-width: 50%;
+		}
+		@include media(">=tablet") {
+			max-width: 34.2%;
+		}
+		a{
+			color: $white;
+			text-decoration: none;
+			@include animate(color);
+			&:hover{
+				color: $yellow;
+			}
+		}
+	}
+	.adress-list{
+		position: relative;
+		padding-top: 25px;
+		width: 100%;
+		padding-right: 10px;
+		&:after{
+			content: " ";
+			max-width: 26px;
+			width: 100%;
+			min-height: 8px;
+			background: $yellow;
+			position: absolute;
+			top: 0px;
+		}
+		@include media(">=phone") {
+			max-width: 50%;
+		}
+		@include media(">=tablet") {
+			max-width: 32%;
+			padding-right: 0;
+		}
+	}
+	address{
+		font-style: normal;
+	}
+}

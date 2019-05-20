@@ -1,0 +1,58 @@
+.header{
+	background: $black;
+	padding: 22px 0px;
+	position: relative;
+	.container{
+		display: flex;
+		justify-content: center;
+	}
+}
+
+.nav-opener {
+	position: absolute;
+	width: 30px;
+	height: 25px;
+	top: 35px;
+	right: 15px;
+	z-index: 5;
+	display: block;
+	@include media(">=tablet") {
+		top: 30px;
+		right: 60px;
+	}
+	span,
+	&:before,
+	&:after {
+		@include animate(transform);
+		content: '';
+		width: 100%;
+		height: 3px;
+		background-color: $yellow;
+		position: absolute;
+		top: 14px;
+		right: 10%;
+		border-radius: 3px;
+	}
+	&:before {
+		transform: translateY(-6px);
+	}
+	&:after {
+		transform: translateY(6px);
+	}
+	span{
+		width: 24px;
+	}
+	.nav-active & {
+		&:before,
+		&:after {
+			transform: rotate(45deg) translateY(0);
+			top: 14px;
+		}
+		&:after {
+			transform: rotate(-45deg) translateY(0);
+		}
+		span {
+			transform: scale(0);
+		}
+	}
+}
