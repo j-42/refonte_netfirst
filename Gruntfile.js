@@ -256,13 +256,13 @@ var PathConfig = require('./grunt-settings.js');
     browserSync: {
       dev: {
         bsFiles: {
-          src : ['*.html','<%= config.cssDir %>*.css', '*.css']
+          src : ['*.html','<%= config.cssDir %>*.css', '*.css','<%= config.jsDir %>*.js']
         },
         options: {
           server: {
-            baseDir: "/Users/JAZ/localhost",
+            baseDir: "/Users/JAZ/localhost/",
             index: "index.html",
-            directory: true
+            directory: false
           },
           watchTask: true
         }

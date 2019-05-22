@@ -21,7 +21,7 @@ function initMobileHover() {
 			$this.toggleClass(onHover);
 		});
 	};
-	
+
 	jQuery(document).ready(function() { touchHover(); });
 }
 
@@ -54,7 +54,7 @@ function clickToScroll(){
 }
 
 // slick init
-function initSlickCarousel() {		
+function initSlickCarousel() {
 	jQuery('.slick-slider-frame').slick({
 		speed: 1500, // // jaz
 		easing: 'ease',
@@ -181,7 +181,7 @@ function initBackgroundVideo() {
 				}
 
 				$video.one('play', function() {
-					$holder.addClass(options.activeClass);  
+					$holder.addClass(options.activeClass);
 					this.makeCallback.apply($.extend(true, {}, this, item), ['onPlay']);
 				}.bind(this));
 
@@ -242,7 +242,7 @@ function initBackgroundVideo() {
 			activeClass: 'video-active',
 			videoHolder: null
 		}, opt);
-		
+
 		return this.each(function() {
 			var $video = jQuery(this);
 			var instance = $video.data('BackgroundVideo');
@@ -958,148 +958,6 @@ function initBackgroundVideo() {
 			$target = $target.closest('li');
 		}
 
-		// jaz
-			// *********** NEXT ARROW ************
-
-			function animateNextSlider(duration){
-
-				// CURRENT  SLIDE
-				var bg = $(".slick-current .slider-bg");
-				var screenShot = $(".slick-current .slider-img img");
-				var globalText = $(".slick-current .slider-text");
-
-				TweenMax
-				.fromTo(bg, duration/1000,
-					{x:"0",opacity:1},
-					{x:"-300",opacity:1, ease:Power2.easeOut, onComplete:initBG}
-				)
-				function initBG(){
-					bg.css("transform", "translateY(0)")
-				}
-
-				TweenMax
-				.fromTo(screenShot, duration/1000,
-					{x:"0",opacity:1},
-					{x:"-200",opacity:1, ease:Power1.easeOut, delay:0, onComplete:initScreen}
-				)
-				function initScreen(){
-					screenShot.css("transform", "translateY(0)")
-				}
-
-				var tl = new TimelineMax({repeat:0, onComplete:initGlobalText});
-
-				tl
-				.to(globalText, duration/1000/2,  // duration 0.5
-					{x:"+100",opacity:1, ease: Power0.easeNone}
-				)
-				.to(globalText, duration/1000/2,  // duration 0.5
-					{x:"0",opacity:1,  ease:Power1.easeOut}
-				)
-
-				function initGlobalText(){
-					globalText.css("transform", "translateX(0)")
-				}
-
-				// NEXT SLIDE
-
-				var nextSlide = $(".slick-current").next();
-				var nextBg = nextSlide.find(".slider-bg");
-				var nextScreen = nextSlide.find(".slider-img img");
-				var nextGlobalText = nextSlide.find(".slider-text");
-
-				TweenMax
-				.fromTo(nextBg, duration/1000/2.5,
-					{x:"200",opacity:1},
-					{x:"0",opacity:1, ease:Power2.easeOut,delay:duration/1000/2.5, onComplete:initNextBG}
-				)
-				function initNextBG(){
-					nextBg.css("transform", "translateY(-500)")
-				}
-
-		};
-
-
-		// *********** PREVIOUS ARROW ************
-
-			function animatePrevSlider(duration){
-
-				// CURRENT  SLIDE
-				var bg = $(".slick-current .slider-bg");
-				var screenShot = $(".slick-current .slider-img img");
-				var globalText = $(".slick-current .slider-text");
-
-				TweenMax
-				.fromTo(bg, duration/1000,
-					{x:"0",opacity:1},
-					{x:"300",opacity:1, ease:Power2.easeOut, onComplete:initBG}
-				)
-				function initBG(){
-					bg.css("transform", "translateY(0)")
-				}
-
-				TweenMax
-					.fromTo(screenShot, duration/1000,
-						{x:"0",opacity:1},
-						{x:"200",opacity:1, ease:Power1.easeOut, delay:0, onComplete:initScreenShot}
-					)
-				function initScreenShot(){
-					screenShot.css("transform", "translateY(0)")
-				}
-
-				var tlR = new TimelineMax({repeat:0, onComplete:initGlobalText});
-				tlR
-				.to(globalText, duration/1000/2,  // duration 0.5
-					{x:"0",opacity:1, ease: Power1.easeOut}
-				)
-				.to(globalText, duration/1000/2,  // duration 0.5
-					{x:"200",opacity:1,  ease:Power2.easeOut}
-				)
-
-				function initGlobalText(){
-					globalText.css("transform", "translateX(0)")
-				}
-
-
-
-
-				// prev SLIDE
-				var prevSlide = $(".slick-current").prev();
-				var prevBg = prevSlide.find(".slider-bg");
-				var prevScreenShot = prevSlide.find(".slider-img img");
-				var prevGlobalText = prevSlide.find(".slider-text");
-
-				TweenMax
-				.fromTo(prevBg, duration/1000/1.5,
-					{x:"-600",opacity:1},
-					{x:"0",opacity:1, ease:Power2.easeOut,delay:duration/1000/4, onComplete:initPrevBG}
-				)
-				function initPrevBG(){
-					prevBg.css("transform", "translateY(-500)")
-				}
-
-				TweenMax
-					.fromTo(prevScreenShot, duration/1000/1.5,
-						{x:"-600",opacity:1},
-						{x:"0",opacity:1, ease:Power2.easeOut, delay:duration/1000/2, onComplete:initPrevScreenShot}
-					)
-				function initPrevScreenShot(){
-					prevScreenShot.css("transform", "translateY(0)")
-				}
-
-				var tlL = new TimelineMax({repeat:0, onComplete:initPrevGlobalText});
-
-				TweenMax
-					.fromTo(prevGlobalText, duration/1000/2,  // duration 0.5
-					{x:"-200",opacity:1},
-					{x:"0",opacity:1,  ease:Power2.easeOut}
-				)
-
-				function initPrevGlobalText(){
-					prevGlobalText.css("transform", "translateX(0)")
-				}
-		}
-
-//! jaz
 
 		unevenOffset = (_.slideCount % _.options.slidesToScroll !== 0);
 		indexOffset = unevenOffset ? 0 : (_.slideCount - _.currentSlide) % _.options.slidesToScroll;
@@ -1108,11 +966,11 @@ function initBackgroundVideo() {
 
 			case 'previous':
 				slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;
-				
+
 				// jaz
 				animatePrevSlider(_.options.speed);
 //! jaz
-				
+
 				if (_.slideCount > _.options.slidesToShow) {
 					_.slideHandler(_.currentSlide - slideOffset, false, dontAnimate);
 				}
@@ -3312,7 +3170,7 @@ function initBackgroundVideo() {
 
 
 /*
- * jQuery sticky box plugin 
+ * jQuery sticky box plugin
  */
 ;(function($, $win) {
 
@@ -3332,7 +3190,7 @@ function initBackgroundVideo() {
 		},
 
 		findElements: function() {
-			// find parent container in which will be box move 
+			// find parent container in which will be box move
 			this.$container = this.$stickyBox.closest(this.options.container);
 			// define box wrap flag
 			this.isWrap = this.options.positionType === 'fixed' && this.options.setBoxHeight;

@@ -13,7 +13,7 @@ a{
 	z-index: 5;
 	opacity: 1;
 	@include animate(opacity);
-	@include media(">=phone") {
+	@include media("<=phone") {
 		left: 3%;
 	}
 	@include media(">=tablet") {
@@ -44,6 +44,13 @@ a{
 	position: relative;
 	@include media("<=tablet") {
 		height: 52px;
+		max-width:50%;
+		margin: 20px auto 80px auto;
+	}
+	@include media("<=phone") {
+		height: 52px;
+		max-width:50%;
+		margin: 20px auto 30px auto;
 	}
 	&:before{
 		content: " ";
@@ -82,6 +89,9 @@ a{
 		}
 		@include media("<tablet") {
 			font-size:60px;
+		}
+		@include media("<phone") {
+			font-size:30px;
 		}
 	}
 }
@@ -662,7 +672,6 @@ a{
 		text-align: center;
 		padding-left: 0 5px;
 	}
-
 	.container{
 		display: flex;
 		flex-direction: column-reverse;
@@ -736,10 +745,7 @@ a{
 
 .bigslider-section{
 	padding-bottom:0;
-	padding-left: 9%;
-	@include media(">=tablet") {
-		padding-left: 0;
-	}
+	padding-left: 0;
 	.item{
 		overflow: hidden;
 		position: relative;
@@ -871,13 +877,14 @@ a{
 		width: 100%;
 		position: relative;
 		padding-top: 150px;
-		display: none;
+		display: block;
+		left: 9.1%;
 		@include media(">=tablet") {
-			display: block;
-			padding-top: 150px;
+	    padding-top: 3vw;
+	    width: 50%;
 		}
-		@include media(">=desktop") {
-			left: 9.1%;
+		@include media("<tablet") {
+			display: none;
 		}
 	}
 	.product-holer{

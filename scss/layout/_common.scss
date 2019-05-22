@@ -196,6 +196,7 @@ textarea{
 	padding: 45px 63px 45px 30px;
 	background-blend-mode: multiply;
 	background-color: $yellow;
+	z-index: 2;
 	@include media(">=tablet") {
 		padding: 85px 63px 60px;
 		margin: 0px 62px;
@@ -217,7 +218,7 @@ textarea{
 }
 
 .methodologie-section{
-	padding-top: 45px;
+	padding-top: 100px;
 	color: $light-black;
 	.head-holder{
 		@include media(">=desktop") {
@@ -290,7 +291,32 @@ textarea{
 		}
 	}
 }
-
+.title-section{
+	user-select: none;
+	padding: 30px 0 0 0;
+	margin: 0 0 0 0;
+	&.gray{
+		background-color:$white;
+		p{
+			color:$gray;
+		}
+	}
+	&.white{
+		background-color:$gray;
+		p{
+			color:$white;
+		}
+	}
+	p{
+		transform:translate(0%, 0%);
+		margin:0;
+		font-size:1800%;
+    line-height: 72%;
+		font-family: "Montserrat-ExtraBold", "Montserrat", sans-serif;
+		font-weight:800;
+		letter-spacing:-0.02em;
+	}
+}
 .digital-section{
 	background: $white;
 	padding-bottom: 30px;
@@ -299,9 +325,10 @@ textarea{
 	}
 	.title-section{
 		background: $gray;
-		z-index: 1;
+		z-index: 0;
 		width: 100%;
 	}
+
 	.head-holder{
 		margin-bottom:50px;
 		@include media(">=tablet") {
@@ -495,6 +522,7 @@ textarea{
 		}
 		@include media(">=widescreen") {
 			max-width: 808px;
+			margin-right: calc(50% - 500px);
 		}
 	}
 	.slider-text{
@@ -603,12 +631,8 @@ textarea{
 	background-position: top;
 	background-size: cover;
 	position: relative;
-	padding-left: 6%;
 	background-blend-mode: initial;
 	background-color: $yellow;
-	@include media(">=desktop") {
-		padding-left: 0;
-	}
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
 		&:after{
 			content: "";
@@ -696,7 +720,7 @@ textarea{
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		margin-right: 15px;
+		margin-right: 2.5%;
 		@include media(">=tablet") {
 			max-width: 48.5%;
 			margin-bottom: 0;
