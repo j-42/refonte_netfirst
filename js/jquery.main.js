@@ -56,7 +56,7 @@ function clickToScroll(){
 // slick init
 function initSlickCarousel() {
 	jQuery('.slick-slider-frame').slick({
-		speed: 1500, // // jaz
+		speed: 1200, // // jaz
 		easing: 'ease',
 		slidesToScroll: 1,
 		slidesToShow:1,
@@ -64,13 +64,15 @@ function initSlickCarousel() {
 		nextArrow: '<span class="slick-next"></span>',
 		adaptiveHeight: true,
 		autoplay:false,
-		autoplaySpeed: 5000,
+		autoplaySpeed: 1000,
 		pauseOnHover: false,
 		touchMove: false,
 		responsive: [{
 			breakpoint: 768,
 			settings: {
 			arrows: false,
+			autoplay:true,
+			autoplaySpeed:3500
 			}
 		}]
 	});
@@ -341,7 +343,7 @@ function initBackgroundVideo() {
 				slidesPerRow: 1,
 				slidesToShow: 1,
 				slidesToScroll: 1,
-				speed: 500,
+				speed: 500, // Useless to change
 				swipe: true,
 				swipeToSlide: false,
 				touchMove: true,
@@ -967,8 +969,8 @@ function initBackgroundVideo() {
 			case 'previous':
 				slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;
 
-				// jaz
-				animatePrevSlider(_.options.speed);
+// jaz
+				_.animatePrevSlider(index, false ,_.options.speed, dontAnimate);
 //! jaz
 
 				if (_.slideCount > _.options.slidesToShow) {
@@ -979,7 +981,7 @@ function initBackgroundVideo() {
 			case 'next':
 
 // jaz
-				animateNextSlider( _.options.speed);
+				_.animateNextSlider(index, false ,_.options.speed, dontAnimate);
 //! jaz
 
 				slideOffset = indexOffset === 0 ? _.options.slidesToScroll : indexOffset;
@@ -2667,9 +2669,11 @@ function initBackgroundVideo() {
 				if (dontAnimate !== true) {
 					_.animateSlide(slideLeft, function() {
 						_.postSlide(targetSlide);
+
 					});
 				} else {
 					_.postSlide(targetSlide);
+
 				}
 			}
 			return;
@@ -2755,6 +2759,250 @@ function initBackgroundVideo() {
 		}
 
 	};
+
+// JAZ =>
+	Slick.prototype.animatePrevSlider = function(index, sync, duration, dontAnimate) {
+	    var _ = this;
+	    sync = sync || false;
+
+	    if (_.animating === true && _.options.waitForAnimate === true) {
+	        return;
+	    }
+
+	    if (_.options.fade === true && _.currentSlide === index) {
+	        return;
+	    }
+
+	    if (_.slideCount <= _.options.slidesToShow) {
+	        return;
+	    }
+
+
+	    var widthBase = $(window).width() / 100;
+
+	    // CURRENT  SLIDE
+	    var bg = $(".slick-current .slider-bg");
+	    var cScreen = $(".slick-current .slider-img img");
+	    var globalText = $(".slick-current .slider-text");
+
+	    TweenMax
+	        .fromTo(bg, duration / 1000, {
+	            x: "0",
+	            opacity: 1
+	        }, {
+	            x: 30 * widthBase,
+	            opacity: 1,
+	            delay: duration / 1000 / 4,
+	            ease: Power2.easeOut,
+	            onComplete: initBG
+	        })
+
+
+	    function initBG() {
+	        bg.css("transform", "translateY(0)")
+	    }
+
+	    TweenMax
+	        .fromTo(cScreen, duration / 1000, {
+	            x: "0",
+	            opacity: 1
+	        }, {
+	            x: 20 * widthBase,
+	            opacity: 1,
+	            ease: Power1.easeOut,
+	            delay: 0,
+	            onComplete: initScreen
+	        })
+
+	    function initScreen() {
+	        cScreen.css("transform", "translateY(0)")
+	    }
+
+
+	    var tl = new TimelineMax({
+	        repeat: 0,
+	        onComplete: initGlobalText
+	    });
+
+	    tl
+	        .to(globalText, duration / 1000 / 20, // duration 0.5
+	            {
+	                x: -1 * widthBase,
+	                opacity: 1,
+	                ease: Power0.easeNone
+	            }
+	        )
+	        .to(globalText, duration / 1000 / 2, // duration 0.5
+	            {
+	                x: 0,
+	                opacity: 1,
+	                ease: Power1.easeOut
+	            }
+	        )
+
+	    function initGlobalText() {
+	        globalText.css("transform", "translateX(0)")
+	    }
+
+	    // prev (left) SLIDER
+	    var prevSlide = $(".slick-current").prev();
+	    var prevBg = prevSlide.find(".slider-bg");
+	    var prevScreen = prevSlide.find(".slider-img img");
+	    var prevGlobalText = prevSlide.find(".slider-text");
+
+	    TweenMax
+	        .fromTo(prevBg, duration / 1000, {
+	            x: -250 * widthBase,
+	            opacity: 0
+	        }, {
+	            x: "0",
+	            opacity: 1,
+	            ease: Power1.easeOut,
+	            onComplete: initprevBG
+	        })
+
+	    function initprevBG() {
+	        prevBg.css("transform", "translateY(" + -50 * widthBase + ")")
+	    }
+
+			TweenMax
+				 .fromTo(prevScreen, duration / 1000, {
+						 x: -100 * widthBase,
+						 opacity: 1
+				 }, {
+						 x: "0",
+						 opacity: 1,
+						 ease: Power2.easeOut,
+						 onComplete: initprevScreen
+				 })
+
+		 function initprevScreen() {
+				 prevBg.css("transform", "translateY(" + -50 * widthBase + ")")
+		 }
+	}
+	Slick.prototype.animateNextSlider = function(index, sync, duration, dontAnimate) {
+	    var _ = this;
+	    sync = sync || false;
+
+	    if (_.animating === true && _.options.waitForAnimate === true) {
+	        return;
+	    }
+
+	    if (_.options.fade === true && _.currentSlide === index) {
+	        return;
+	    }
+
+	    if (_.slideCount <= _.options.slidesToShow) {
+	        return;
+	    }
+
+	    var widthBase = $(window).width() / 100;
+
+	    // CURRENT  SLIDE
+	    var bg = $(".slick-current .slider-bg");
+	    var screenShot = $(".slick-current .slider-img img");
+	    var globalText = $(".slick-current .slider-text");
+
+	    TweenMax
+	        .fromTo(bg, duration / 1000, {
+	            x: "0",
+	            opacity: 1
+	        }, {
+	            x: -100 * widthBase,
+	            opacity: 1,
+	            ease: Power2.easeOut,
+	            onComplete: initBG
+	        })
+
+	    function initBG() {
+	        bg.css("transform", "translateY(0)")
+	    }
+
+	    TweenMax
+	        .fromTo(screenShot, duration / 1000, {
+	            x: "0"
+	        }, {
+	            x: -50 * widthBase,
+	            ease: Power1.easeOut,
+	            delay: duration / 1000/ 8,
+	            onComplete: initScreen
+	        })
+
+	    function initScreen() {
+	        screenShot.css("transform", "translateY(0)")
+	    }
+
+			TweenMax
+				 .fromTo(globalText, duration / 1000, {
+						 x: "0"
+				 }, {
+						 x: 0 * widthBase,
+						 ease: Power1.easeOut,
+						 delay: duration / 1000/ 2,
+						 onComplete: initGlobalText
+				 })
+
+	    function initGlobalText() {
+	        globalText.css("transform", "translateX(0)")
+	    }
+
+	    // NEXT SLIDE
+
+	    var nextSlide = $(".slick-current").next();
+	    var nextBg = nextSlide.find(".slider-bg");
+	    var nextScreen = nextSlide.find(".slider-img img");
+	    var nextGlobalText = nextSlide.find(".slider-text");
+
+
+	    TweenMax
+	        .fromTo(nextScreen, duration / 1000 , {
+	                x: 120 * widthBase,
+	                opacity: 1
+	            }, {
+	                x: "0",
+	                opacity: 1,
+	                ease: Power3.easeOut,
+	                onComplete: initNextScreen
+	            }
+	        )
+
+	    function initNextScreen() {
+	        nextScreen.css("transform", "translateX(0)")
+	    }
+
+	    TweenMax
+	        .fromTo(nextGlobalText, duration / 1000 / 2, {
+	            x: 60 * widthBase,
+	            opacity: 1
+	        }, {
+	            x: "0",
+	            opacity: 1,
+	            ease: Power2.easeOut,
+	            delay: duration / 1000 / 8,
+	            onComplete: initNextGlobalText
+	        })
+
+	    function initNextGlobalText() {
+	        nextGlobalText.css("transform", "translateX(0)")
+	    }
+
+	    TweenMax
+	        .fromTo(nextBg, duration / 1000, {
+	            x: 350 * widthBase,
+	            opacity: 1
+	        }, {
+	            x: "0",
+	            opacity: 1,
+	            ease: Power3.easeOut,
+	            onComplete: initNextBG
+	        })
+
+	    function initNextBG() {
+	        nextBg.css("transform", "translateY(" + -50 * widthBase + ")")
+	    }
+	};
+// < = JAZ
+
 
 	Slick.prototype.startLoad = function() {
 

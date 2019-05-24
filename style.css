@@ -1803,20 +1803,70 @@ a {
     bottom: 0;
     left: 0; }
 
-.secondhead-holder {
+.blow-section .secondhead-holder {
+  width: 40%;
   max-width: 650px;
-  margin: 0 auto 120px auto;
-  position: relative; }
+  margin: 0 auto 40px auto;
+  position: relative;
+  padding-left: 0; }
+  @media (min-width: 1201px) {
+    .blow-section .secondhead-holder {
+      margin: 0 auto 120px auto; } }
   @media (max-width: 768px) {
-    .secondhead-holder {
-      height: 52px;
-      max-width: 50%;
-      margin: 20px auto 80px auto; } }
+    .blow-section .secondhead-holder {
+      max-width: 70%; } }
   @media (max-width: 480px) {
-    .secondhead-holder {
-      height: 52px;
+    .blow-section .secondhead-holder {
       max-width: 50%;
       margin: 20px auto 30px auto; } }
+  .blow-section .secondhead-holder:before {
+    content: " ";
+    z-index: 1;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+    height: 52px;
+    background-image: -webkit-linear-gradient(right, #f9dd47 90%, #fac73d);
+    background-image: linear-gradient(to left, #f9dd47 90%, #fac73d); }
+    @media (max-width: 768px) {
+      .blow-section .secondhead-holder:before {
+        top: -10px;
+        height: 25px; } }
+  @media (min-width: 768px) {
+    .blow-section .secondhead-holder:after {
+      content: " ";
+      z-index: 0;
+      position: absolute;
+      bottom: -12px;
+      left: 9%;
+      right: 0;
+      height: 1px;
+      background: rgba(249, 221, 71, 0.3); } }
+  .blow-section .secondhead-holder h1 {
+    font-family: "Popins";
+    letter-spacing: 0.155em;
+    font-size: 4em;
+    text-align: center; }
+    @media (min-width: 768px) {
+      .blow-section .secondhead-holder h1 {
+        margin-bottom: 5px;
+        padding-left: 17px; } }
+    @media (max-width: 767px) {
+      .blow-section .secondhead-holder h1 {
+        font-size: 3em; } }
+    @media (max-width: 479px) {
+      .blow-section .secondhead-holder h1 {
+        font-size: 1.6em; } }
+
+.secondhead-holder {
+  max-width: 100%;
+  padding-left: 9%;
+  margin-bottom: 10px;
+  position: relative; }
+  @media (min-width: 768px) {
+    .secondhead-holder {
+      margin-bottom: 60px; } }
   .secondhead-holder:before {
     content: " ";
     z-index: 1;
@@ -1829,7 +1879,8 @@ a {
     background-image: linear-gradient(to left, #f9dd47 90%, #fac73d); }
     @media (min-width: 768px) {
       .secondhead-holder:before {
-        height: 52px; } }
+        height: 52px;
+        right: 29.5%; } }
   @media (min-width: 768px) {
     .secondhead-holder:after {
       content: " ";
@@ -1839,22 +1890,14 @@ a {
       left: 9%;
       right: 0;
       height: 1px;
-      background: rgba(249, 221, 71, 0.3); } }
+      background: #f9dd47; } }
   .secondhead-holder h1 {
     font-family: "Popins";
-    letter-spacing: 0.155em;
-    font-size: 95px;
-    text-align: center; }
+    letter-spacing: 0.155em; }
     @media (min-width: 768px) {
       .secondhead-holder h1 {
         margin-bottom: 5px;
         padding-left: 17px; } }
-    @media (max-width: 767px) {
-      .secondhead-holder h1 {
-        font-size: 60px; } }
-    @media (max-width: 479px) {
-      .secondhead-holder h1 {
-        font-size: 30px; } }
 
 .lagence-section {
   background-position: center;
@@ -2361,12 +2404,12 @@ a {
       font-size: 20px; }
       @media (min-width: 480px) {
         .project-section .items-holder h1 {
-          font-size: 35px;
+          font-size: 1.6em;
           margin-bottom: 35px;
           padding-bottom: 18px; } }
       @media (min-width: 480px) {
         .project-section .items-holder h1 {
-          font-size: 60px; } }
+          font-size: 3em; } }
       .project-section .items-holder h1:after {
         content: " ";
         position: absolute;

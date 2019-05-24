@@ -262,7 +262,7 @@ var PathConfig = require('./grunt-settings.js');
           server: {
             baseDir: "/Users/JAZ/localhost/",
             index: "index.html",
-            directory: false
+            directory: true
           },
           watchTask: true
         }

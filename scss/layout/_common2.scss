@@ -38,17 +38,19 @@ a{
 	}
 
 }
-.secondhead-holder{
+.blow-section .secondhead-holder{
+	width: 40%;
 	max-width: 650px;
-  margin: 0 auto 120px auto;
+  margin: 0 auto 40px auto;
 	position: relative;
+	padding-left: 0;
+	@include media(">widescreen") {
+		margin: 0 auto 120px auto;
+	}
 	@include media("<=tablet") {
-		height: 52px;
-		max-width:50%;
-		margin: 20px auto 80px auto;
+		max-width:70%;
 	}
 	@include media("<=phone") {
-		height: 52px;
 		max-width:50%;
 		margin: 20px auto 30px auto;
 	}
@@ -59,10 +61,11 @@ a{
 		top: -5px;
 		left: 0;
 		right: 0;
-		height: 25px;
+		height: 52px;
 		background-image: linear-gradient(to left, #f9dd47 90%, #fac73d);
-		@include media(">=tablet") {
-			height: 52px;
+		@include media("<=tablet") {
+			top: -10px;
+			height: 25px;
 		}
 	}
 	&:after{
@@ -81,17 +84,63 @@ a{
 	h1{
 		font-family: "Popins";
 		letter-spacing: 0.155em;
-		font-size:95px;
+		font-size: 4em;
 		text-align: center;
 		@include media(">=tablet") {
 			margin-bottom: 5px;
 			padding-left: 17px;
 		}
 		@include media("<tablet") {
-			font-size:60px;
+			font-size:3em;
 		}
 		@include media("<phone") {
-			font-size:30px;
+			font-size:1.6em;
+		}
+	}
+}
+
+.secondhead-holder{
+	max-width: 100%;
+	padding-left: 9%;
+	margin-bottom: 10px;
+	position: relative;
+	@include media(">=tablet") {
+		margin-bottom: 60px;
+	}
+	&:before{
+		content: " ";
+		max-width: 90%;
+		z-index: 1;
+		position: absolute;
+		top: -5px;
+		left: 0;
+		right: 0;
+		height: 25px;
+		background-image: linear-gradient(to left, #f9dd47 90%, #fac73d);
+		@include media(">=tablet") {
+			height: 52px;
+			right: 29.5%;
+		}
+	}
+	&:after{
+		@include media(">=tablet") {
+			content: " ";
+			z-index: 0;
+			position: absolute;
+			bottom: -12px;
+			left: 9%;
+			right: 0;
+			height: 1px;
+			background: $yellow;
+		}
+	}
+	h1{
+		font-family: "Popins";
+		letter-spacing: 0.155em;
+		@include media(">=tablet") {
+			margin-bottom: 5px;
+			padding-left: 17px;
+
 		}
 	}
 }
@@ -498,7 +547,6 @@ a{
 			}
 		}
 
-
 	.container{
 		padding: 0 12px;
 	}
@@ -609,12 +657,12 @@ a{
 			padding-bottom: 0px;
 			font-size: 20px;
 			@include media(">=phone") {
-				font-size: 35px;
+				font-size: 1.6em;
 				margin-bottom: 35px;
 				padding-bottom: 18px;
 			}
 			@include media(">=phone") {
-				font-size: 60px;
+				font-size: 3em;
 			}
 			&:after{
 				content: " ";
