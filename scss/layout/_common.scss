@@ -632,7 +632,6 @@ textarea{
 	background-size: cover;
 	position: relative;
 	background-blend-mode: initial;
-	background-color: $yellow;
 	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none){
 		&:after{
 			content: "";
@@ -706,7 +705,7 @@ textarea{
 		outline: none;
 		width: 100%;
 		&::placeholder{
-			color: $light-black;
+			color: #888888;
 		}
 	}
 	.form{

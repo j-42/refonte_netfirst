@@ -1501,8 +1501,7 @@ textarea {
   background-position: top;
   background-size: cover;
   position: relative;
-  background-blend-mode: initial;
-  background-color: #f9dd47; }
+  background-blend-mode: initial; }
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .contact-section:after {
       content: "";
@@ -1570,11 +1569,11 @@ textarea {
     outline: none;
     width: 100%; }
     .contact-section textarea::-webkit-input-placeholder {
-      color: #2d2d2d; }
+      color: #888888; }
     .contact-section textarea:-ms-input-placeholder {
-      color: #2d2d2d; }
+      color: #888888; }
     .contact-section textarea::placeholder {
-      color: #2d2d2d; }
+      color: #888888; }
   .contact-section .form {
     margin-bottom: 20px; }
     @media (min-width: 768px) {
@@ -1822,6 +1821,7 @@ a {
   .blow-section .secondhead-holder:before {
     content: " ";
     z-index: 1;
+    max-width: 100%;
     position: absolute;
     top: -5px;
     left: 0;
@@ -1869,6 +1869,7 @@ a {
       margin-bottom: 60px; } }
   .secondhead-holder:before {
     content: " ";
+    max-width: 90%;
     z-index: 1;
     position: absolute;
     top: -5px;
@@ -2361,7 +2362,7 @@ a {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column; }
-    @media (min-width: 768px) {
+    @media (min-width: 1025px) {
       .project-section .items-holder {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
@@ -2374,25 +2375,22 @@ a {
       margin-bottom: 40px;
       max-width: 814px;
       overflow: hidden; }
+      @media (min-width: 1025px) {
+        .project-section .items-holder a {
+          width: 48%; } }
       .project-section .items-holder a:hover .text-holder {
         position: relative;
-        height: 100%;
-        min-height: 21vw;
         bottom: 0;
         color: #000;
         opacity: 1; }
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
           .project-section .items-holder a:hover .text-holder {
-            min-height: 42vw; } }
+            font-size: 16px; } }
       .project-section .items-holder a:hover .img-holder {
         position: absolute;
         bottom: 0; }
-      @media (min-width: 768px) {
-        .project-section .items-holder a {
-          width: 48%; } }
-      @media (max-width: 1023px) {
-        .project-section .items-holder a {
-          width: 100%; } }
+        .project-section .items-holder a:hover .img-holder img {
+          width: 100%; }
     .project-section .items-holder .img-holder {
       text-align: center; }
     .project-section .items-holder h1 {
@@ -2432,18 +2430,22 @@ a {
     opacity: 0;
     background-color: #f9dd47;
     color: #f9dd47;
-    height: 0;
     font-size: 12px;
     width: 100%;
     height: 100%;
     -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out; }
-    @media (min-width: 768px) {
+    transition: all 0.3s ease-in-out;
+    height: 22vw; }
+    @media (max-width: 1024px) {
       .project-section .text-holder {
-        font-size: 16px; } }
+        height: 44vw; } }
   .project-section .img-holder {
     position: relative;
+    height: 22vw;
     z-index: 1; }
+    @media (max-width: 1024px) {
+      .project-section .img-holder {
+        height: 44vw; } }
 
 .blow-section {
   position: relative;
@@ -2683,7 +2685,8 @@ a {
         position: absolute;
         top: 10px;
         right: 9.1%;
-        width: 61.3%; } }
+        width: 61.3%;
+        max-width: 800px; } }
   .bigslider-section .slider-bg {
     width: 100%;
     position: relative;
@@ -2693,7 +2696,8 @@ a {
     @media (min-width: 768px) {
       .bigslider-section .slider-bg {
         padding-top: 3vw;
-        width: 50%; } }
+        width: 50%;
+        max-width: 500px; } }
     @media (max-width: 767px) {
       .bigslider-section .slider-bg {
         display: none; } }
